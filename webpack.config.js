@@ -1,6 +1,8 @@
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = {
    devtool: false,
@@ -40,17 +42,17 @@ module.exports = {
 
          {
             test: /\.js$/,
-            loader: 'babel-loader',
+            use: ['babel-loader', 'eslint-loader'],
             exclude: /node_modules/
-         },
-         {
-            test: /\.jsx$/,
-            loader: 'babel-loader!jsx-loader'
          }
       ]
    },
    plugins: [
-      new ExtractTextPlugin({filename: '[name].css'})
+      new ExtractTextPlugin({filename: '[name].css'}),
+      new CleanWebpackPlugin(['dist']),
+      new HtmlWebpackPlugin({
+         title: "leafv"
+      })
    ],
    resolve: {
       modules: [
