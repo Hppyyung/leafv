@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --mode development --color --progress --open --port 3000",
+    "dev": "webpack-dev-server --mode development --color --progress --open --port 3000 --config webpack.config.dev.js",
     "build": "webpack --mode production"
   },
   "repository": {
