@@ -3,15 +3,17 @@ import BaseMap from 'src/map/BaseMap';
 import config from './config';
 
 /**
- * AMap is https://www.amap.com/
+ * BMap is https://map.baidu.com/.
  */
-class AMap extends BaseMap {
+class BMap extends BaseMap {
    constructor(...args) {
       super(...args);
 
       this.config = config;
+      const crs = config.getCRS();
+      this.mapOpts = Object.assign({}, this.mapOpts, {crs});
       this.tileLayerOpts = Object.assign({}, this.tileLayerOpts, config.tileLayerOpts);
    }
 }
 
-export default AMap;
+export default BMap;

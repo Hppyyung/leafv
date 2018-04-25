@@ -1,6 +1,10 @@
 //--------------- leafv modules --------------------
 import MapTypes from 'src/map/MapTypes';
 import AMap from 'src/map/AMap';
+import BMap from 'src/map/BMap';
+
+// ------------- node_modules ---------------------
+import 'leaflet/dist/leaflet.css';
 
 /**
  * @param {String || HTMLElement} container
@@ -26,6 +30,9 @@ class LeafVMap {
       switch(this.type) {
          case LeafVMap.MAP_TYPES.AMap:
             map = new AMap(this.container, this.styles, this.opts);
+            break;
+         case LeafVMap.MAP_TYPES.BMap:
+            map = new BMap(this.container, this.styles, this.opts);
             break;
          default:
          // do nothing.
