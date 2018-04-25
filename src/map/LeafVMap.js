@@ -2,6 +2,7 @@
 import MapTypes from 'src/map/MapTypes';
 import AMap from 'src/map/AMap';
 import BMap from 'src/map/BMap';
+import GoogleMap from 'src/map/GoogleMap';
 
 // ------------- node_modules ---------------------
 import 'leaflet/dist/leaflet.css';
@@ -25,20 +26,23 @@ class LeafVMap {
     * Add different type map by this.type
     */
    createMap() {
-      let map = null;
+      // let map = null;
 
-      switch(this.type) {
-         case LeafVMap.MAP_TYPES.AMap:
-            map = new AMap(this.container, this.styles, this.opts);
-            break;
-         case LeafVMap.MAP_TYPES.BMap:
-            map = new BMap(this.container, this.styles, this.opts);
-            break;
-         default:
-         // do nothing.
-      }
+      // switch(this.type) {
+      //    case LeafVMap.MAP_TYPES.AMap:
+      //       map = AMap;
+      //       break;
+      //    case LeafVMap.MAP_TYPES.BMap:
+      //       map = BMap;
+      //       break;
+      //    case LeafVMap.MAP_TYPES.GOOGLE:
+      //       map = GoogleMap;
+      //       break;
+      //    default:
+      //    // do nothing.
+      // }
 
-      this.vMap = map.createMap();
+      this.vMap = new LeafVMap.MAPS[this.type](this.container, this.styles, this.opts).createMap();
       return this;
    }
 
@@ -47,6 +51,11 @@ class LeafVMap {
    }
 
    static MAP_TYPES = MapTypes;
+   static MAPS = {
+      [MapTypes.AMap]: AMap,
+      [MapTypes.BMap]: BMap,
+      [MapTypes.Google]: GoogleMap
+   };
 }
 
 export default LeafVMap;

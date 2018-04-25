@@ -4,8 +4,8 @@
 const OSM = 'osm';
 const BMap = 'baidu';
 const AMap = 'gaode';
-const GOOGLE = 'google';
+const Google = 'google';
 
 export default {
-   OSM, BMap, AMap, GOOGLE
+   OSM, BMap, AMap, Google
 };
