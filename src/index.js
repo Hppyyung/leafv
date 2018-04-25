@@ -1,3 +1,7 @@
 import LeafVMap from 'src/map/LeafVMap';
 
-export { LeafVMap };
+const LeafV = {
+	LeafVMap
+};
+
+export default LeafV;

@@ -44,7 +44,15 @@ module.exports = {
             test: /\.js$/,
             use: ['babel-loader', 'eslint-loader'],
             exclude: /node_modules/
-         }
+         },
+         {
+            test: /\.(jpg|png)$/,
+            loader: 'url-loader?limit=8192'
+         },
+         {
+            test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
+            loader: 'file-loader'
+         },
       ]
    },
    plugins: [

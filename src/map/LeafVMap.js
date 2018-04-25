@@ -1,20 +1,45 @@
-// import L from 'leaflet';
-// import 'leaflet/dist/leaflet.css';
+//--------------- leafv modules --------------------
+import MapTypes from 'src/map/MapTypes';
+import AMap from 'src/map/AMap';
 
+/**
+ * @param {String || HTMLElement} container
+ * @param {MapTypes} type
+ * @param {Array<String>} urls
+ * @param {Object} opts
+ */
 class LeafVMap {
-   constructor(container, type, url, opts = {}) {
+   constructor(container, type, styles, opts = {}) {
       this.container = container;
-      this.url = url;
-      this.map = null;
-      this.zoomLevel = opts.zoomLevel || 5;
+      this.type = type;
+      this.styles = styles;
+      this.opts = opts;
+      this.vMap = null;
    }
 
    /**
-    * Add different type map by this.type. Should be override.
+    * Add different type map by this.type
     */
-   addMap() {
+   createMap() {
+      let map = null;
 
+      switch(this.type) {
+         case LeafVMap.MAP_TYPES.AMap:
+            map = new AMap(this.container, this.styles, this.opts);
+            break;
+         default:
+         // do nothing.
+      }
+
+      this.vMap = map.createMap();
+      return this;
    }
+
+   dispose() {
+      this.vMap && this.vMap.dispose();
+   }
+
+   static MAP_TYPES = MapTypes;
 }
 
 export default LeafVMap;
